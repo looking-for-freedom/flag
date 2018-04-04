@@ -4,9 +4,9 @@ pipeline {
 
     parameters {
         string(
-            name: 'Version',
+            name: 'COMMIT_SHA',
             defaultValue: sh(returnStdout: true, script: 'git rev-parse HEAD').trim(),
-            description: 'Version to build and tag, default is the Git commit SHA'
+            description: 'Git commit SHA to build and tag, default is the Git commit SHA for HEAD'
         )
     }
 
@@ -24,25 +24,25 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh "${env.MVN} compile -Dversion=${params.Version}"
+                sh "${env.MVN} compile -Dversion=${params.COMMIT_SHA}"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh "${env.MVN} test -Dversion=${params.Version}"
+                sh "${env.MVN} test -Dversion=${params.COMMIT_SHA}"
             }
         }
         stage('Package') {
             steps {
                 echo 'Packaging...'
-                sh "${env.MVN} package -Dversion=${params.Version}"
+                sh "${env.MVN} package -Dversion=${params.COMMIT_SHA}"
             }
         }
         stage('Publish') {
             steps {
                 echo 'Publishing...'
-                sh "${env.MVN} deploy -Dversion=${params.Version}"
+                sh "${env.MVN} deploy -Dversion=${params.COMMIT_SHA}"
             }
         }
     }
