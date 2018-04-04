@@ -5,7 +5,7 @@
 
 	<groupId>com.knight</groupId>
 	<artifactId>flag</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>${version}</version>
 	<packaging>jar</packaging>
 
 	<name>spring-rest-seed</name>
@@ -24,6 +24,7 @@
 		<java.version>1.8</java.version>
 		<dockerfile.maven.version>1.4.0</dockerfile.maven.version>
 		<docker.registry>docker-registry-docker-registry:5000</docker.registry>
+		<version>0.1.0-SNAPSHOT</version>
 	</properties>
 
 	<dependencies>
