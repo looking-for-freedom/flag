@@ -2,14 +2,6 @@
 pipeline {
     agent any
 
-    parameters {
-        string(
-            name: 'COMMIT_SHA',
-            defaultValue: sh(returnStdout: true, script: 'git rev-parse HEAD').trim(),
-            description: 'Git commit SHA to build and tag, default is the Git commit SHA for HEAD'
-        )
-    }
-
     environment {
         MVN = './mvnw -B -V'
     }
