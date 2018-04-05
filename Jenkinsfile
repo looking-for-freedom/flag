@@ -6,9 +6,10 @@ pipeline {
         stage('Info') {
             steps {
                 echo 'Runtime inforamtion...'
-                sh 'env'
+                sh 'groups'
+                sh 'env | sort'
                 sh 'ls -l /bin/docker /var/run/docker.sock'
-                sh 'ls -l $HOME/.m2'
+                sh 'ls -al $HOME/.m2'
                 sh 'mount'
             }
         }
