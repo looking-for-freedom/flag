@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        MVN = "./mvnw -B -V -Dversion=${params.COMMIT_SHA}"
+        MVN = "./mvnw -B -V"
     }
 
     stages {
@@ -15,6 +15,13 @@ pipeline {
                 sh 'ls -l /bin/docker /var/run/docker.sock'
                 sh 'ls -al $HOME/.m2'
                 sh 'mount'
+            }
+        }
+
+        stage('Set version') {
+            steps {
+                echo 'Setting version...'
+                sh "${env.MVN} versions:set -DnewVersion=${params.COMMIT_SHA} versions:commit"
             }
         }
 
