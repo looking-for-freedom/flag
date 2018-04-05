@@ -2,6 +2,10 @@
 pipeline {
     agent any
 
+    environment {
+        MVN = "./mvnw -B -V -Dversion=${params.COMMIT_SHA}"
+    }
+
     stages {
         stage('Info') {
             steps {
@@ -14,10 +18,17 @@ pipeline {
             }
         }
 
-        stage('Build, Test, and Deploy') {
+        stage('Build, Test, and Package') {
             steps {
-                echo 'Building, testing, and deploying...'
-                sh "./mvnw -B -V clean deploy -Dversion=${params.COMMIT_SHA}"
+                echo 'Building, testing, and packaging...'
+                sh "${env.MVN} clean package"
+            }
+        }
+
+        stage('Docker push') {
+            steps {
+                echo 'Pushing...'
+                sh "${env.MVN} dockerfile:push"
             }
         }
     }
