@@ -21,7 +21,7 @@ pipeline {
         stage('Set version') {
             steps {
                 echo 'Setting version...'
-                sh "${env.MVN} versions:set -DnewVersion=${env.GIT_COMMIT} versions:commit"
+                sh "${env.MVN} versions:set -DnewVersion=${env.COMMIT_SHA} versions:commit"
             }
         }
 
