@@ -3,6 +3,16 @@ pipeline {
     agent any
 
     stages {
+        stage('Info') {
+            steps {
+                echo 'Runtime inforamtion...'
+                sh 'env'
+                sh 'ls -l /bin/docker /var/run/docker.sock'
+                sh 'ls -l $HOME/.m2'
+                sh 'mount'
+            }
+        }
+
         stage('Build, Test, and Deploy') {
             steps {
                 echo 'Building, testing, and deploying...'
