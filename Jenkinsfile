@@ -2,11 +2,9 @@
 pipeline {
     agent any
 
-    environment {
-        MVN = "./mvnw -B -V"
-    }
-
     stages {
+        String mvn = './mvnw -B -V -Ddocker.registry="$DOCKER_REGISTRY_DOCKER_REGISTRY_SERVICE_HOST:$DOCKER_REGISTRY_DOCKER_REGISTRY_SERVICE_PORT"'
+
         stage('Info') {
             steps {
                 echo 'Runtime inforamtion...'
@@ -21,21 +19,21 @@ pipeline {
         stage('Set version') {
             steps {
                 echo 'Setting version...'
-                sh "${env.MVN} versions:set -DnewVersion=${env.COMMIT_SHA} versions:commit"
+                sh "${mvn} versions:set -DnewVersion=${env.COMMIT_SHA} versions:commit"
             }
         }
 
         stage('Build, Test, and Package') {
             steps {
                 echo 'Building, testing, and packaging...'
-                sh "${env.MVN} clean package"
+                sh "${mvn} clean package"
             }
         }
 
         stage('Docker push') {
             steps {
                 echo 'Pushing...'
-                sh "${env.MVN} dockerfile:push"
+                sh "${mvn} dockerfile:push"
             }
         }
     }
