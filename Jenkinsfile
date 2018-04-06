@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        MVN = './mvnw -B -V -Ddocker.registry="$DOCKER_REGISTRY_DOCKER_REGISTRY_SERVICE_HOST:$DOCKER_REGISTRY_DOCKER_REGISTRY_SERVICE_PORT"'
+        MVN = './mvnw -B -V'
     }
 
     stages {
