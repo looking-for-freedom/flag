@@ -21,7 +21,7 @@ def notifyAtomist(String teamIds, String buildStatus, String buildPhase="FINALIZ
                 scm: [
                     url: env.GIT_URL,
                     branch: env.COMMIT_BRANCH,
-                    commit env.COMMIT_SHA
+                    commit: env.COMMIT_SHA
                 ]
             ]
         ]
