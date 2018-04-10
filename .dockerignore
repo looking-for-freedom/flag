@@ -5,6 +5,8 @@
 .mvn/
 src/
 target/
+# dockerfile-maven-plugin also does not automatically send
+# .dockerignore and Dockerfile
 !.dockerignore
 !Dockerfile
 !target/*.jar
