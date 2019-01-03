@@ -21,7 +21,7 @@ class FlagController {
 
     @RequestMapping(method = GET, path = "hello/{name}")
     public String person(@PathVariable String name) {
-        return "Aloha " + name + "!";
+        return "Hello " + name + "!";
     }
 
 }
