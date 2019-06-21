@@ -5,7 +5,7 @@
 
 	<groupId>com.knight</groupId>
 	<artifactId>flag</artifactId>
-	<version>${version}</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>spring-rest-seed</name>
@@ -24,7 +24,6 @@
 		<java.version>1.8</java.version>
 		<dockerfile.maven.version>1.4.0</dockerfile.maven.version>
 		<docker.registry>registry.kube-system.svc.cluster.local</docker.registry>
-		<version>0.1.0-SNAPSHOT</version>
 	</properties>
 
 	<dependencies>
